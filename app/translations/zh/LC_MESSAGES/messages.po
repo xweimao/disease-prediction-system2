@@ -1,0 +1,217 @@
+# Chinese translations for Disease Prediction System.
+# Copyright (C) 2024 Sichuan Provincial Key Laboratory of Human Genetics
+# This file is distributed under the same license as the Disease Prediction System project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Disease Prediction System 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh\n"
+"Language-Team: zh <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+msgid "Disease Prediction System"
+msgstr "疾病预测系统"
+
+msgid "Sichuan Provincial Key Laboratory of Human Genetics"
+msgstr "四川省人类基因重点实验室"
+
+msgid "Disease Risk Calculator"
+msgstr "疾病风险计算器"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Contact"
+msgstr "联系我们"
+
+msgid "Data Life and Intelligent Health Center"
+msgstr "数据生命与智能健康中心"
+
+msgid "Data Life and Intelligent Health Center (Mao Xiaowei)"
+msgstr "数据生命与智能健康中心 (毛晓伟)"
+
+msgid "Maintain and Contact"
+msgstr "维护和联系"
+
+msgid "All rights reserved"
+msgstr "保留所有权利"
+
+msgid "Southwest China Multi-Disease Risk Assessment"
+msgstr "围绕四大慢病西南地区多发疾病"
+
+msgid "Comprehensive disease risk prediction covering 8 categories and 11 types of diseases prevalent in Southwest China"
+msgstr "涵盖西南地区多发的8类11种疾病的综合疾病风险预测"
+
+msgid "8 Disease Categories"
+msgstr "8类疾病"
+
+msgid "11 Disease Types"
+msgstr "11种疾病"
+
+msgid "AI-Powered"
+msgstr "AI驱动"
+
+msgid "Evidence-Based"
+msgstr "循证医学"
+
+msgid "Disease Risk Assessment"
+msgstr "疾病风险评估"
+
+msgid "Select a disease category to begin your risk assessment"
+msgstr "选择疾病类别开始您的风险评估"
+
+msgid "Cancer"
+msgstr "癌症"
+
+msgid "Lung Cancer"
+msgstr "肺癌"
+
+msgid "Esophageal Cancer"
+msgstr "食管癌"
+
+msgid "Gastric Cancer"
+msgstr "胃癌"
+
+msgid "Colorectal Cancer"
+msgstr "结直肠癌"
+
+msgid "Liver Cancer"
+msgstr "肝癌"
+
+msgid "Cardiovascular Disease"
+msgstr "心脑血管疾病"
+
+msgid "Stroke"
+msgstr "卒中"
+
+msgid "Hypertension"
+msgstr "高血压"
+
+msgid "Respiratory Disease"
+msgstr "呼吸疾病"
+
+msgid "Chronic Obstructive Pulmonary Disease"
+msgstr "慢性阻塞性肺疾病"
+
+msgid "Metabolic Disease"
+msgstr "代谢性疾病"
+
+msgid "Diabetes"
+msgstr "糖尿病"
+
+msgid "Hyperlipidemia"
+msgstr "高血脂"
+
+msgid "Hyperuricemia"
+msgstr "高尿酸血症"
+
+msgid "Why Choose Our Platform"
+msgstr "为什么选择我们的平台"
+
+msgid "AI-Powered Analysis"
+msgstr "AI智能分析"
+
+msgid "Advanced machine learning algorithms for accurate risk assessment"
+msgstr "先进的机器学习算法，提供准确的风险评估"
+
+msgid "Privacy Protected"
+msgstr "隐私保护"
+
+msgid "Your health data is secure and never stored permanently"
+msgstr "您的健康数据安全，永不永久存储"
+
+msgid "Evidence-Based"
+msgstr "循证医学"
+
+msgid "Based on extensive research and clinical data from Southwest China"
+msgstr "基于西南地区广泛的研究和临床数据"
+
+msgid "Important Disclaimer"
+msgstr "重要免责声明"
+
+msgid "This tool is for educational and research purposes only. Results should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare providers for medical decisions."
+msgstr "本工具仅用于教育和研究目的。结果不应替代专业医疗建议、诊断或治疗。医疗决策请务必咨询合格的医疗保健提供者。"
+
+msgid "Risk Assessment"
+msgstr "风险评估"
+
+msgid "Please fill in the following information to assess your disease risk"
+msgstr "请填写以下信息以评估您的疾病风险"
+
+msgid "Risk Factors Assessment"
+msgstr "风险因素评估"
+
+msgid "Please select"
+msgstr "请选择"
+
+msgid "Calculate Risk"
+msgstr "计算风险"
+
+msgid "About This Assessment"
+msgstr "关于此评估"
+
+msgid "This risk assessment tool uses advanced algorithms to evaluate your risk based on established medical research and population data from Southwest China."
+msgstr "此风险评估工具使用先进算法，基于已确立的医学研究和西南地区人群数据来评估您的风险。"
+
+msgid "Evidence-based"
+msgstr "循证医学"
+
+msgid "Scientifically validated"
+msgstr "科学验证"
+
+msgid "Privacy protected"
+msgstr "隐私保护"
+
+msgid "Important Notice"
+msgstr "重要提示"
+
+msgid "This assessment is for educational purposes only and should not replace professional medical advice. Please consult healthcare providers for medical decisions."
+msgstr "此评估仅用于教育目的，不应替代专业医疗建议。医疗决策请咨询医疗保健提供者。"
+
+msgid "Risk Assessment Result"
+msgstr "风险评估结果"
+
+msgid "Recommendations"
+msgstr "建议"
+
+msgid "Print Result"
+msgstr "打印结果"
+
+msgid "New Assessment"
+msgstr "新评估"
+
+msgid "Calculating..."
+msgstr "计算中..."
+
+msgid "Prediction failed"
+msgstr "预测失败"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Page Not Found"
+msgstr "页面未找到"
+
+msgid "Sorry, the page you are looking for does not exist or has been moved."
+msgstr "抱歉，您要查找的页面不存在或已被移动。"
+
+msgid "Back to Home"
+msgstr "返回首页"
+
+msgid "Go Back"
+msgstr "返回"
+
+msgid "Service is running normally"
+msgstr "服务正常运行"

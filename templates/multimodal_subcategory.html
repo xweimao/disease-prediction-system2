@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}{% if get_locale() == 'zh' %}{{ subcategory_info.name_zh }}{% else %}{{ subcategory_info.name_en }}{% endif %} - {{ _('Multimodal Database') }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            {% if subcategory_info.id == 'literature' or subcategory_info.id == 'records' or subcategory_info.id == 'reports' %}
+                <i class="fas fa-file-alt me-3"></i>
+            {% elif subcategory_info.id == 'genomics' %}
+                <i class="fas fa-dna me-3"></i>
+            {% elif subcategory_info.id == 'proteomics' %}
+                <i class="fas fa-atom me-3"></i>
+            {% elif subcategory_info.id == 'metabolomics' %}
+                <i class="fas fa-flask me-3"></i>
+            {% elif subcategory_info.id == 'ct' or subcategory_info.id == 'mri' or subcategory_info.id == 'xray' or subcategory_info.id == 'ultrasound' %}
+                <i class="fas fa-image me-3"></i>
+            {% endif %}
+            {% if get_locale() == 'zh' %}{{ subcategory_info.name_zh }}{% else %}{{ subcategory_info.name_en }}{% endif %}
+        </h1>
+        <p class="lead">{% if get_locale() == 'zh' %}详细的数据探索和分析工具{% else %}Detailed data exploration and analysis tools{% endif %}</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-database me-2"></i>
+                        {% if get_locale() == 'zh' %}数据概览{% else %}Data Overview{% endif %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h3 class="text-primary mb-1">1,234</h3>
+                                <small class="text-muted">{% if get_locale() == 'zh' %}总记录数{% else %}Total Records{% endif %}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h3 class="text-primary mb-1">567</h3>
+                                <small class="text-muted">{% if get_locale() == 'zh' %}活跃研究{% else %}Active Studies{% endif %}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h3 class="text-primary mb-1">89</h3>
+                                <small class="text-muted">{% if get_locale() == 'zh' %}数据来源{% else %}Data Sources{% endif %}</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <h6 class="fw-bold mb-3">{% if get_locale() == 'zh' %}样例数据{% else %}Sample Data{% endif %}</h6>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{% if get_locale() == 'zh' %}编号{% else %}ID{% endif %}</th>
+                                    <th>{% if get_locale() == 'zh' %}类型{% else %}Type{% endif %}</th>
+                                    <th>{% if get_locale() == 'zh' %}来源{% else %}Source{% endif %}</th>
+                                    <th>{% if get_locale() == 'zh' %}日期{% else %}Date{% endif %}</th>
+                                    <th>{% if get_locale() == 'zh' %}状态{% else %}Status{% endif %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>{% if get_locale() == 'zh' %}{{ subcategory_info.name_zh }}{% else %}{{ subcategory_info.name_en }}{% endif %}</td>
+                                    <td>{% if get_locale() == 'zh' %}医院A{% else %}Hospital A{% endif %}</td>
+                                    <td>2024-01-15</td>
+                                    <td><span class="badge bg-primary">{% if get_locale() == 'zh' %}活跃{% else %}Active{% endif %}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>{% if get_locale() == 'zh' %}{{ subcategory_info.name_zh }}{% else %}{{ subcategory_info.name_en }}{% endif %}</td>
+                                    <td>{% if get_locale() == 'zh' %}研究中心B{% else %}Research Center B{% endif %}</td>
+                                    <td>2024-01-10</td>
+                                    <td><span class="badge bg-primary">{% if get_locale() == 'zh' %}活跃{% else %}Active{% endif %}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>003</td>
+                                    <td>{% if get_locale() == 'zh' %}{{ subcategory_info.name_zh }}{% else %}{{ subcategory_info.name_en }}{% endif %}</td>
+                                    <td>{% if get_locale() == 'zh' %}临床试验C{% else %}Clinical Trial C{% endif %}</td>
+                                    <td>2024-01-05</td>
+                                    <td><span class="badge bg-secondary">{% if get_locale() == 'zh' %}处理中{% else %}Processing{% endif %}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-robot me-2"></i>
+                        {% if get_locale() == 'zh' %}Panda算法{% else %}Panda Algorithm{% endif %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">{% if get_locale() == 'zh' %}基于Panda算法的高级AI分析，用于智能数据处理和模式识别。{% else %}Advanced AI analysis powered by Panda algorithm for intelligent data processing and pattern recognition.{% endif %}</p>
+                    <div class="d-grid">
+                        <a href="{{ url_for('panda_algorithm') }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-play me-2"></i>{% if get_locale() == 'zh' %}运行分析{% else %}Run Analysis{% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-network-wired me-2"></i>
+                        {% if get_locale() == 'zh' %}联邦学习{% else %}Federated Learning{% endif %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">{% if get_locale() == 'zh' %}在不共享敏感数据的情况下，跨多个机构进行安全协作学习。{% else %}Secure collaborative learning without sharing sensitive data across multiple institutions.{% endif %}</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shield-alt me-2"></i>{% if get_locale() == 'zh' %}开始训练{% else %}Start Training{% endif %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-download me-2"></i>
+                        {% if get_locale() == 'zh' %}数据导出{% else %}Data Export{% endif %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">{% if get_locale() == 'zh' %}以各种格式导出数据，用于进一步分析和研究。{% else %}Export data in various formats for further analysis and research.{% endif %}</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary btn-sm">CSV</button>
+                        <button class="btn btn-outline-primary btn-sm">JSON</button>
+                        <button class="btn btn-outline-primary btn-sm">XML</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('multimodal_category', category_id=category_id) }}" class="btn btn-outline-primary me-2">
+            <i class="fas fa-arrow-left me-2"></i>{% if get_locale() == 'zh' %}返回分类{% else %}Back to Category{% endif %}
+        </a>
+        <a href="{{ url_for('multimodal_database') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-home me-2"></i>{% if get_locale() == 'zh' %}数据库首页{% else %}Database Home{% endif %}
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Multimodal Database') }} - {{ _('Major Chronic Disease Prevention and Treatment Technology Promotion Platform') }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-database me-3"></i>
+            {{ _('Multimodal Database') }}
+        </h1>
+        <p class="lead">{% if get_locale() == 'zh' %}综合医学数据集成平台{% else %}Comprehensive medical data integration platform{% endif %}</p>
+    </div>
+
+    <div class="row g-4">
+        {% for category_id, category in multimodal_data.items() %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    {% if category_id == 'medical_text' %}
+                        <i class="fas fa-file-text fa-3x mb-3"></i>
+                    {% elif category_id == 'omics_data' %}
+                        <i class="fas fa-dna fa-3x mb-3"></i>
+                    {% elif category_id == 'medical_imaging' %}
+                        <i class="fas fa-x-ray fa-3x mb-3"></i>
+                    {% endif %}
+                    <h4>{% if get_locale() == 'zh' %}{{ category.name_zh }}{% else %}{{ category.name_en }}{% endif %}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {% if get_locale() == 'zh' %}{{ category.description_zh }}{% else %}{{ category.description_en }}{% endif %}
+                    </p>
+                    
+                    <h6 class="fw-bold mb-3">{% if get_locale() == 'zh' %}子分类{% else %}Subcategories{% endif %}:</h6>
+                    <div class="list-group list-group-flush">
+                        {% for subcat in category.subcategories %}
+                        <a href="{{ url_for('multimodal_subcategory', category_id=category_id, subcategory_id=subcat.id) }}" 
+                           class="list-group-item list-group-item-action">
+                            <i class="fas fa-chevron-right me-2"></i>
+                            {% if get_locale() == 'zh' %}{{ subcat.name_zh }}{% else %}{{ subcat.name_en }}{% endif %}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-grid">
+                        <a href="{{ url_for('multimodal_category', category_id=category_id) }}" 
+                           class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-right me-2"></i>{% if get_locale() == 'zh' %}探索分类{% else %}Explore Category{% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 bg-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{% if get_locale() == 'zh' %}数据集成功能{% else %}Data Integration Features{% endif %}</h5>
+                    <div class="row g-3 mt-3">
+                        <div class="col-md-3">
+                            <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
+                            <h6>{% if get_locale() == 'zh' %}数据安全{% else %}Data Security{% endif %}</h6>
+                            <small class="text-muted">{% if get_locale() == 'zh' %}高级加密和隐私保护{% else %}Advanced encryption and privacy protection{% endif %}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-network-wired fa-2x text-primary mb-2"></i>
+                            <h6>{% if get_locale() == 'zh' %}联邦学习{% else %}Federated Learning{% endif %}</h6>
+                            <small class="text-muted">{% if get_locale() == 'zh' %}无数据共享的分布式学习{% else %}Distributed learning without data sharing{% endif %}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-robot fa-2x text-primary mb-2"></i>
+                            <h6>{% if get_locale() == 'zh' %}Panda算法{% else %}Panda Algorithm{% endif %}</h6>
+                            <small class="text-muted">{% if get_locale() == 'zh' %}高级AI分析引擎{% else %}Advanced AI analysis engine{% endif %}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-database fa-2x text-primary mb-2"></i>
+                            <h6>{% if get_locale() == 'zh' %}样例数据{% else %}Sample Data{% endif %}</h6>
+                            <small class="text-muted">{% if get_locale() == 'zh' %}丰富的研究样本数据集{% else %}Rich sample datasets for research{% endif %}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

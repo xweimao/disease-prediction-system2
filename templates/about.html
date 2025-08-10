@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('About') }} - {{ _('Disease Risk Calculator') }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 text-center mb-5">{{ _('About Our Platform') }}</h1>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">
+                        <i class="fas fa-microscope me-2"></i>
+                        {{ _('Research Background') }}
+                    </h3>
+                    <p class="card-text">
+                        {{ _('This disease risk assessment platform is developed by the Sichuan Provincial Key Laboratory of Human Genetics, focusing on the prevalent diseases in Southwest China. Our research is based on extensive epidemiological studies and genetic analysis of the local population.') }}
+                    </p>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{{ _('Institution') }}</h6>
+                            <p class="mb-2"><strong>{{ _('Sichuan Provincial Key Laboratory of Human Genetics') }}</strong></p>
+                            <p class="mb-0"><small class="text-muted">{{ _('Data Life and Intelligent Health Center') }}</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{{ _('Research Focus') }}</h6>
+                            <p class="mb-0"><small class="text-muted">{{ _('围绕四大慢病西南地区多发疾病 (8类11种疾病)') }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-success">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        {{ _('Disease Coverage') }}
+                    </h3>
+                    <p class="card-text">{{ _('Our platform covers 8 major disease categories with 11 specific diseases:') }}</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-danger">{{ _('Cancer') }}</h5>
+                            <ul class="list-unstyled ms-3">
+                                <li><i class="fas fa-dot-circle text-danger me-2"></i>{{ _('Lung Cancer') }}</li>
+                                <li><i class="fas fa-dot-circle text-danger me-2"></i>{{ _('Esophageal Cancer') }}</li>
+                                <li><i class="fas fa-dot-circle text-danger me-2"></i>{{ _('Gastric Cancer') }}</li>
+                                <li><i class="fas fa-dot-circle text-danger me-2"></i>{{ _('Colorectal Cancer') }}</li>
+                                <li><i class="fas fa-dot-circle text-danger me-2"></i>{{ _('Liver Cancer') }}</li>
+                            </ul>
+                            
+                            <h5 class="text-warning">{{ _('Cardiovascular Disease') }}</h5>
+                            <ul class="list-unstyled ms-3">
+                                <li><i class="fas fa-dot-circle text-warning me-2"></i>{{ _('Stroke') }}</li>
+                                <li><i class="fas fa-dot-circle text-warning me-2"></i>{{ _('Hypertension') }}</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5 class="text-info">{{ _('Respiratory Disease') }}</h5>
+                            <ul class="list-unstyled ms-3">
+                                <li><i class="fas fa-dot-circle text-info me-2"></i>{{ _('Chronic Obstructive Pulmonary Disease') }}</li>
+                            </ul>
+                            
+                            <h5 class="text-success">{{ _('Metabolic Disease') }}</h5>
+                            <ul class="list-unstyled ms-3">
+                                <li><i class="fas fa-dot-circle text-success me-2"></i>{{ _('Diabetes') }}</li>
+                                <li><i class="fas fa-dot-circle text-success me-2"></i>{{ _('Hyperlipidemia') }}</li>
+                                <li><i class="fas fa-dot-circle text-success me-2"></i>{{ _('Hyperuricemia') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-info">
+                        <i class="fas fa-cogs me-2"></i>
+                        {{ _('Technology') }}
+                    </h3>
+                    <p class="card-text">
+                        {{ _('Our platform utilizes advanced machine learning algorithms including logistic regression, random forest, and neural networks to provide accurate risk assessments. The models are trained on large-scale population data from Southwest China, ensuring regional relevance and accuracy.') }}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-warning">
+                        <i class="fas fa-users me-2"></i>
+                        {{ _('Research Team') }}
+                    </h3>
+                    <p class="card-text">
+                        {{ _('This project is led by the Data Life and Intelligent Health Center at the Sichuan Provincial Key Laboratory of Human Genetics. Our multidisciplinary team includes geneticists, epidemiologists, data scientists, and clinical researchers.') }}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {{ _('Important Notice') }}
+                </h4>
+                <p>{{ _('This tool is designed for research and educational purposes. The risk assessments provided should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare providers for medical decisions.') }}</p>
+                <hr>
+                <p class="mb-0">{{ _('If you have health concerns, please seek immediate medical attention from qualified healthcare professionals.') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

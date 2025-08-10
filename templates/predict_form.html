@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if get_locale() == 'zh' %}{{ disease_info.name_zh }}{% else %}{{ disease_info.name_en }}{% endif %} - {{ _('Risk Assessment') }}
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- 疾病信息头部 -->
+    <div class="disease-info-header text-center mb-5 p-4 rounded">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-calculator me-3"></i>
+            {% if get_locale() == 'zh' %}{{ disease_info.name_zh }}{% else %}{{ disease_info.name_en }}{% endif %}
+            {{ _('Risk Assessment') }}
+        </h1>
+        <p class="lead">{{ _('Please fill in the following information to assess your disease risk') }}</p>
+    </div>
+
+    <div class="row">
+        <!-- 预测表单 -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-clipboard-list me-2"></i>
+                        {{ _('Risk Factors Assessment') }}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form id="predictionForm">
+                        <div class="row">
+                            {% for factor in disease_info.risk_factors %}
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ factor.id }}" class="form-label fw-bold">
+                                    {% if get_locale() == 'zh' %}{{ factor.name_zh }}{% else %}{{ factor.name_en }}{% endif %}
+                                    {% if factor.unit %}
+                                        <small class="text-muted">({{ factor.unit }})</small>
+                                    {% endif %}
+                                </label>
+                                
+                                {% if factor.type == 'number' %}
+                                    <input type="number" 
+                                           class="form-control" 
+                                           id="{{ factor.id }}" 
+                                           name="{{ factor.id }}"
+                                           min="{{ factor.min }}" 
+                                           max="{{ factor.max }}" 
+                                           required>
+                                {% elif factor.type == 'select' %}
+                                    <select class="form-select" id="{{ factor.id }}" name="{{ factor.id }}" required>
+                                        <option value="">{{ _('Please select') }}</option>
+                                        {% for option in factor.options %}
+                                            <option value="{{ option.value }}">
+                                                {% if get_locale() == 'zh' %}{{ option.label_zh }}{% else %}{{ option.label_en }}{% endif %}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5" id="calculateBtn">
+                                <i class="fas fa-calculator me-2"></i>
+                                {{ _('Calculate Risk') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 侧边栏信息 -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>
+                        {{ _('About This Assessment') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ _('This risk assessment tool uses advanced algorithms to evaluate your risk based on established medical research and population data from Southwest China.') }}
+                    </p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success me-2"></i>{{ _('Evidence-based') }}</li>
+                        <li><i class="fas fa-check text-success me-2"></i>{{ _('Scientifically validated') }}</li>
+                        <li><i class="fas fa-check text-success me-2"></i>{{ _('Privacy protected') }}</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning">
+                <h6 class="alert-heading">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {{ _('Important Notice') }}
+                </h6>
+                <p class="mb-0 small">
+                    {{ _('This assessment is for educational purposes only and should not replace professional medical advice. Please consult healthcare providers for medical decisions.') }}
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 结果显示区域 -->
+    <div id="resultSection" class="mt-5" style="display: none;">
+        <div class="card shadow-lg border-0">
+            <div class="card-header text-center py-4" id="resultHeader">
+                <h3 class="mb-0">{{ _('Risk Assessment Result') }}</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <div class="risk-score-container">
+                            <div class="risk-score" id="riskScore">--</div>
+                            <div class="risk-level" id="riskLevel">--</div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h5>{{ _('Recommendations') }}</h5>
+                        <div id="recommendations">
+                            <!-- 建议内容将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary me-2" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>{{ _('Print Result') }}
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="resetForm()">
+                        <i class="fas fa-redo me-2"></i>{{ _('New Assessment') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 疾病预测表单处理
+document.getElementById('predictionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const calculateBtn = document.getElementById('calculateBtn');
+    const originalText = calculateBtn.innerHTML;
+    
+    // 显示加载状态
+    calculateBtn.innerHTML = '<span class="loading-spinner me-2"></span>{{ _("Calculating...") }}';
+    calculateBtn.disabled = true;
+    
+    try {
+        // 收集表单数据
+        const formData = new FormData(this);
+        const factors = {};
+        
+        for (let [key, value] of formData.entries()) {
+            factors[key] = isNaN(value) ? value : parseFloat(value);
+        }
+        
+        // 发送预测请求
+        const response = await fetch(`/api/predict/{{ disease_id }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ factors: factors })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            displayResult(result);
+        } else {
+            throw new Error(result.error || '{{ _("Prediction failed") }}');
+        }
+        
+    } catch (error) {
+        alert('{{ _("Error") }}: ' + error.message);
+    } finally {
+        // 恢复按钮状态
+        calculateBtn.innerHTML = originalText;
+        calculateBtn.disabled = false;
+    }
+});
+
+function displayResult(result) {
+    const resultSection = document.getElementById('resultSection');
+    const resultHeader = document.getElementById('resultHeader');
+    const riskScore = document.getElementById('riskScore');
+    const riskLevel = document.getElementById('riskLevel');
+    const recommendations = document.getElementById('recommendations');
+    
+    // 设置风险评分和等级
+    riskScore.textContent = result.risk_score;
+    
+    const locale = '{{ get_locale() }}';
+    const riskLevelText = locale === 'zh' ? result.risk_level_zh : result.risk_level_en;
+    riskLevel.textContent = riskLevelText;
+    
+    // 设置颜色主题
+    riskScore.className = 'risk-score risk-' + result.risk_level;
+    riskLevel.className = 'risk-level risk-' + result.risk_level;
+    
+    if (result.risk_level === 'low') {
+        resultHeader.className = 'card-header text-center py-4 bg-success text-white';
+    } else if (result.risk_level === 'medium') {
+        resultHeader.className = 'card-header text-center py-4 bg-warning text-dark';
+    } else {
+        resultHeader.className = 'card-header text-center py-4 bg-danger text-white';
+    }
+    
+    // 显示建议
+    const recommendationList = result.recommendations[locale] || result.recommendations['zh'];
+    recommendations.innerHTML = recommendationList.map(rec => 
+        `<div class="alert alert-info mb-2"><i class="fas fa-lightbulb me-2"></i>${rec}</div>`
+    ).join('');
+    
+    // 显示结果区域
+    resultSection.style.display = 'block';
+    resultSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetForm() {
+    document.getElementById('predictionForm').reset();
+    document.getElementById('resultSection').style.display = 'none';
+}
+</script>
+{% endblock %}

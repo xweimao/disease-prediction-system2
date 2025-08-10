@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ _('Disease Prediction System') }} - {{ _('Sichuan Provincial Key Laboratory of Human Genetics') }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-heartbeat me-2"></i>
+                {{ _('Major Chronic Disease Prevention and Treatment Technology Promotion Platform') }}
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">{{ _('Home') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">{{ _('About') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">{{ _('Contact') }}</a>
+                    </li>
+                </ul>
+
+                <!-- 语言切换 -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-globe me-1"></i>
+                        {% if get_locale() == 'zh' %}中文{% else %}English{% endif %}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url_for('set_language', language='zh') }}">中文</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('set_language', language='en') }}">English</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>{{ _('Sichuan Provincial Key Laboratory of Human Genetics') }}</h5>
+                    <p>{{ _('Data Life and Intelligent Health Center') }}</p>
+                    <p>{{ _('Maintain and Contact') }}: {{ _('Data Life and Intelligent Health Center (Xiaowei Mao)') }}</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 {{ _('Sichuan Provincial Key Laboratory of Human Genetics') }}</p>
+                    <p>{{ _('All rights reserved') }}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* 自定义样式 - 严格三色配色方案 */
+/* 仅使用3种颜色：
+   1. 主色调：#2563eb (蓝色) - 所有主要元素、按钮、链接、成功状态
+   2. 中性色：#6b7280 (灰色) - 文本、边框、背景、次要元素
+   3. 强调色：#dc2626 (红色) - 仅用于警告、错误、高风险
+*/
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* 英雄区域 */
+.hero-section {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    min-height: 400px;
+}
+
+/* 导航栏 */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* 卡片样式 */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    border: none;
+    font-weight: 600;
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 特色图标 */
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+/* 表单样式 */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+/* 结果显示 */
+.result-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.risk-score {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.risk-low { color: #6b7280; }
+.risk-medium { color: #2563eb; }
+.risk-high { color: #dc2626; }
+
+/* 页脚 */
+.footer {
+    margin-top: auto;
+}
+
+/* 加载动画 */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f4f6;
+    border-top: 3px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 疾病信息页面 */
+.disease-info-header {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    padding: 3rem 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .card-body .row .col-md-6 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* 动画效果 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

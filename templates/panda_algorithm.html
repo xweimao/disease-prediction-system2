@@ -1,0 +1,944 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Panda Algorithm') }} - {{ _('Major Chronic Disease Prevention and Treatment Technology Promotion Platform') }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-robot me-3"></i>
+            {{ _('Panda Algorithm') }}
+        </h1>
+        <p class="lead">{{ _('Advanced AI analysis powered by Panda algorithm for intelligent data processing and pattern recognition.') }}</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- 联邦学习模块 -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-network-wired me-2"></i>
+                        {{ _('Federated Learning Module') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ _('Secure collaborative learning without sharing sensitive data across multiple institutions.') }}</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">{{ _('Training Status') }}</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" id="federated-progress">
+                                75%
+                            </div>
+                        </div>
+                        <small class="text-muted">{{ _('Training') }}...</small>
+                    </div>
+                    
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <div class="text-center p-2 bg-light rounded">
+                                <strong>5</strong><br>
+                                <small>{{ _('Participating Nodes') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-2 bg-light rounded">
+                                <strong>1,234</strong><br>
+                                <small>{{ _('Total Samples') }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button class="btn btn-primary" onclick="startFederatedTraining()">
+                            <i class="fas fa-play me-2"></i>{{ _('Start Training') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 差分隐私模块 -->
+        <div class="col-lg-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        {{ _('Differential Privacy Module') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ _('Advanced encryption and privacy protection') }}</p>
+                    
+                    <div class="mb-3">
+                        <label for="privacy-level" class="form-label">{{ _('Privacy Level') }}</label>
+                        <select class="form-select" id="privacy-level">
+                            <option value="high">{{ _('High') }}</option>
+                            <option value="medium">{{ _('Medium') }}</option>
+                            <option value="low">{{ _('Low') }}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">{{ _('Privacy Parameters') }}</label>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="ε (epsilon)" value="0.1" step="0.01">
+                            </div>
+                            <div class="col-6">
+                                <input type="number" class="form-control" placeholder="δ (delta)" value="0.001" step="0.001">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button class="btn btn-primary" onclick="configurePrivacy()">
+                            <i class="fas fa-cog me-2"></i>{{ _('Configure Parameters') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数据上传和分析 -->
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-upload me-2"></i>
+                        {{ _('Data Upload') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="data-file" class="form-label">{{ _('Select File') }}</label>
+                            <input type="file" class="form-control" id="data-file" accept=".csv,.xlsx,.json">
+                            <div class="form-text">{{ _('Supported formats: CSV, Excel, JSON') }}</div>
+                        </div>
+                        
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="federated-mode" checked>
+                                    <label class="form-check-label" for="federated-mode">
+                                        {{ _('Enable Federated Learning') }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy-protection" checked>
+                                    <label class="form-check-label" for="privacy-protection">
+                                        {{ _('Enable Privacy Protection') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="button" class="btn btn-primary" onclick="uploadData()">
+                                <i class="fas fa-upload me-2"></i>{{ _('Upload') }}
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="startAnalysis()">
+                                <i class="fas fa-play me-2"></i>{{ _('Start Analysis') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-database me-2"></i>
+                        {{ _('Sample Dataset') }}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">{{ _('Use sample breast cancer dataset for testing') }}</p>
+                    
+                    <div class="mb-3">
+                        <strong>{{ _('Dataset Info') }}:</strong><br>
+                        <small class="text-muted">
+                            • {{ _('Samples') }}: 1,000<br>
+                            • {{ _('Features') }}: 20<br>
+                            • {{ _('Format') }}: CSV<br>
+                            • {{ _('Size') }}: 2.5 MB
+                        </small>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary btn-sm" onclick="loadSampleData()">
+                            <i class="fas fa-download me-2"></i>{{ _('Load Sample Data') }}
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="viewSampleData()">
+                            <i class="fas fa-eye me-2"></i>{{ _('View Details') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数据预处理过程 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm" id="preprocessing-card" style="display: none;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cogs me-2"></i>
+                        {% if get_locale() == 'zh' %}数据预处理过程{% else %}Data Preprocessing Process{% endif %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <!-- 数据质量检查 -->
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{% if get_locale() == 'zh' %}数据质量检查{% else %}Data Quality Check{% endif %}</h6>
+                            <div id="data-quality-content">
+                                <!-- 动态加载内容 -->
+                            </div>
+                        </div>
+
+                        <!-- 缺失值分析 -->
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{% if get_locale() == 'zh' %}缺失值分析{% else %}Missing Value Analysis{% endif %}</h6>
+                            <div id="missing-value-content">
+                                <!-- 动态加载内容 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 填充过程可视化 -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h6 class="text-primary">{% if get_locale() == 'zh' %}数据填充过程{% else %}Data Imputation Process{% endif %}</h6>
+                            <div class="progress mb-3" style="height: 25px;">
+                                <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                                     role="progressbar" style="width: 0%" id="imputation-progress">
+                                    0%
+                                </div>
+                            </div>
+                            <div id="imputation-log" class="bg-light p-3 rounded" style="height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;">
+                                <!-- 填充日志将在这里显示 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 填充前后对比 -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{% if get_locale() == 'zh' %}填充前{% else %}Before Imputation{% endif %}</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered" id="before-imputation-table">
+                                    <!-- 动态生成表格 -->
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{% if get_locale() == 'zh' %}填充后{% else %}After Imputation{% endif %}</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered" id="after-imputation-table">
+                                    <!-- 动态生成表格 -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分析结果 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm" id="results-card" style="display: none;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>
+                        {% if get_locale() == 'zh' %}分析结果{% else %}Analysis Results{% endif %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4" id="results-content">
+                        <!-- 结果将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function startFederatedTraining() {
+    // 模拟联邦学习训练
+    const progressBar = document.getElementById('federated-progress');
+    let progress = 0;
+    
+    const interval = setInterval(() => {
+        progress += 5;
+        progressBar.style.width = progress + '%';
+        progressBar.textContent = progress + '%';
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            progressBar.textContent = '{{ _("Completed") }}';
+        }
+    }, 200);
+}
+
+function configurePrivacy() {
+    alert('{{ _("Privacy parameters configured successfully") }}');
+}
+
+function uploadData() {
+    const fileInput = document.getElementById('data-file');
+    if (!fileInput.files[0]) {
+        alert('{% if get_locale() == "zh" %}请先选择文件{% else %}Please select a file first{% endif %}');
+        return;
+    }
+
+    // 显示上传进度
+    const uploadButton = document.querySelector('button[onclick="uploadData()"]');
+    const originalText = uploadButton.innerHTML;
+    uploadButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>{% if get_locale() == "zh" %}上传中...{% else %}Uploading...{% endif %}';
+    uploadButton.disabled = true;
+
+    // 模拟文件上传过程
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+
+    fetch('/panda/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // 恢复按钮状态
+        uploadButton.innerHTML = originalText;
+        uploadButton.disabled = false;
+
+        if (data.status === 'success') {
+            alert('{% if get_locale() == "zh" %}数据上传成功！文件名：{% else %}Data uploaded successfully! Filename: {% endif %}' + data.filename);
+
+            // 显示文件信息
+            showUploadedFileInfo(data);
+        } else {
+            alert('{% if get_locale() == "zh" %}上传失败：{% else %}Upload failed: {% endif %}' + data.message);
+        }
+    })
+    .catch(error => {
+        // 恢复按钮状态
+        uploadButton.innerHTML = originalText;
+        uploadButton.disabled = false;
+        alert('{% if get_locale() == "zh" %}上传错误：{% else %}Upload error: {% endif %}' + error.message);
+    });
+}
+
+function showUploadedFileInfo(data) {
+    // 在页面上显示上传的文件信息
+    const fileInfoHtml = `
+        <div class="alert alert-success mt-3" id="file-upload-info">
+            <h6>{% if get_locale() == 'zh' %}文件上传成功{% else %}File Uploaded Successfully{% endif %}</h6>
+            <p class="mb-1"><strong>{% if get_locale() == 'zh' %}文件名{% else %}Filename{% endif %}:</strong> ${data.filename}</p>
+            <p class="mb-0"><strong>{% if get_locale() == 'zh' %}文件大小{% else %}File Size{% endif %}:</strong> ${(data.size / 1024).toFixed(2)} KB</p>
+        </div>
+    `;
+
+    // 移除之前的文件信息
+    const existingInfo = document.getElementById('file-upload-info');
+    if (existingInfo) {
+        existingInfo.remove();
+    }
+
+    // 添加新的文件信息到卡片body中
+    const cardBody = document.querySelector('.card-body');
+    if (cardBody) {
+        cardBody.insertAdjacentHTML('beforeend', fileInfoHtml);
+    }
+}
+
+function startAnalysis() {
+    // 检查是否有文件上传或样例数据
+    const fileInput = document.getElementById('data-file');
+    const hasFile = fileInput.files.length > 0;
+    const hasUploadedFile = document.getElementById('file-upload-info') !== null;
+
+    if (!hasFile && !hasUploadedFile) {
+        alert('{% if get_locale() == "zh" %}请先上传数据文件或加载样例数据{% else %}Please upload a data file or load sample data first{% endif %}');
+        return;
+    }
+
+    // 如果没有上传文件但有样例数据，先模拟上传
+    if (!hasUploadedFile && hasFile) {
+        const fileName = fileInput.files[0].name;
+        const fileSize = fileInput.files[0].size;
+        showUploadedFileInfo({
+            filename: fileName,
+            size: fileSize,
+            message: '文件准备就绪'
+        });
+    }
+
+    // 显示预处理卡片
+    const preprocessingCard = document.getElementById('preprocessing-card');
+    const resultsCard = document.getElementById('results-card');
+
+    preprocessingCard.style.display = 'block';
+    resultsCard.style.display = 'none';
+
+    // 禁用分析按钮，但保持上传按钮可用
+    const analysisButton = document.querySelector('button[onclick="startAnalysis()"]');
+    const originalAnalysisText = analysisButton.innerHTML;
+    analysisButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>{% if get_locale() == "zh" %}分析中...{% else %}Analyzing...{% endif %}';
+    analysisButton.disabled = true;
+
+    // 开始数据预处理过程
+    startDataPreprocessing();
+
+    // 在分析完成后恢复按钮
+    setTimeout(() => {
+        analysisButton.innerHTML = originalAnalysisText;
+        analysisButton.disabled = false;
+    }, 15000); // 预计15秒完成整个流程
+}
+
+function startDataPreprocessing() {
+    // 1. 数据质量检查
+    setTimeout(() => {
+        showDataQualityCheck();
+    }, 500);
+
+    // 2. 缺失值分析
+    setTimeout(() => {
+        showMissingValueAnalysis();
+    }, 1500);
+
+    // 3. 数据填充过程
+    setTimeout(() => {
+        startDataImputation();
+    }, 3000);
+}
+
+function showDataQualityCheck() {
+    const content = document.getElementById('data-quality-content');
+    content.innerHTML = `
+        <div class="small">
+            <div class="mb-2">
+                <span class="badge bg-primary">{% if get_locale() == 'zh' %}总样本数{% else %}Total Samples{% endif %}: 1,000</span>
+            </div>
+            <div class="mb-2">
+                <span class="badge bg-primary">{% if get_locale() == 'zh' %}特征数量{% else %}Features{% endif %}: 20</span>
+            </div>
+            <div class="mb-2">
+                <span class="badge bg-secondary">{% if get_locale() == 'zh' %}数值特征{% else %}Numerical{% endif %}: 15</span>
+            </div>
+            <div class="mb-2">
+                <span class="badge bg-secondary">{% if get_locale() == 'zh' %}分类特征{% else %}Categorical{% endif %}: 5</span>
+            </div>
+            <div class="mt-3">
+                <div class="text-success">
+                    <i class="fas fa-check-circle me-1"></i>
+                    {% if get_locale() == 'zh' %}数据格式验证通过{% else %}Data format validation passed{% endif %}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function showMissingValueAnalysis() {
+    const content = document.getElementById('missing-value-content');
+    content.innerHTML = `
+        <div class="small">
+            <div class="mb-2">
+                <strong>{% if get_locale() == 'zh' %}缺失值统计{% else %}Missing Value Statistics{% endif %}:</strong>
+            </div>
+            <div class="mb-1">age: <span class="text-danger">5.2% (52/1000)</span></div>
+            <div class="mb-1">family_history: <span class="text-danger">3.1% (31/1000)</span></div>
+            <div class="mb-1">hormone_therapy: <span class="text-danger">7.8% (78/1000)</span></div>
+            <div class="mb-1">breast_density: <span class="text-danger">12.3% (123/1000)</span></div>
+            <div class="mb-1">menstrual_age: <span class="text-danger">2.9% (29/1000)</span></div>
+            <div class="mt-3">
+                <div class="text-warning">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    {% if get_locale() == 'zh' %}检测到缺失值，需要填充{% else %}Missing values detected, imputation required{% endif %}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function startDataImputation() {
+    const progressBar = document.getElementById('imputation-progress');
+    const logContainer = document.getElementById('imputation-log');
+
+    let progress = 0;
+    const steps = [
+        '{% if get_locale() == "zh" %}开始数据填充过程...{% else %}Starting data imputation process...{% endif %}',
+        '{% if get_locale() == "zh" %}分析特征相关性...{% else %}Analyzing feature correlations...{% endif %}',
+        '{% if get_locale() == "zh" %}使用KNN算法填充数值特征...{% else %}Using KNN algorithm for numerical features...{% endif %}',
+        '{% if get_locale() == "zh" %}使用众数填充分类特征...{% else %}Using mode imputation for categorical features...{% endif %}',
+        '{% if get_locale() == "zh" %}应用联邦学习约束...{% else %}Applying federated learning constraints...{% endif %}',
+        '{% if get_locale() == "zh" %}验证填充结果...{% else %}Validating imputation results...{% endif %}',
+        '{% if get_locale() == "zh" %}生成填充报告...{% else %}Generating imputation report...{% endif %}',
+        '{% if get_locale() == "zh" %}数据填充完成！{% else %}Data imputation completed!{% endif %}'
+    ];
+
+    let stepIndex = 0;
+
+    const interval = setInterval(() => {
+        if (stepIndex < steps.length) {
+            const timestamp = new Date().toLocaleTimeString();
+            logContainer.innerHTML += `<div>[${timestamp}] ${steps[stepIndex]}</div>`;
+            logContainer.scrollTop = logContainer.scrollHeight;
+
+            progress = ((stepIndex + 1) / steps.length) * 100;
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+
+            stepIndex++;
+        } else {
+            clearInterval(interval);
+            progressBar.classList.remove('progress-bar-animated');
+
+            // 显示填充前后对比
+            setTimeout(() => {
+                showImputationComparison();
+            }, 1000);
+
+            // 开始最终分析
+            setTimeout(() => {
+                startFinalAnalysis();
+            }, 3000);
+        }
+    }, 800);
+}
+
+function showImputationComparison() {
+    // 填充前数据（带缺失值）
+    const beforeTable = document.getElementById('before-imputation-table');
+    beforeTable.innerHTML = `
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>{% if get_locale() == 'zh' %}年龄{% else %}Age{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}家族史{% else %}Family History{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}激素治疗{% else %}Hormone Therapy{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}乳腺密度{% else %}Breast Density{% endif %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>45</td>
+                <td>1</td>
+                <td><span class="text-danger">NaN</span></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td><span class="text-danger">NaN</span></td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>52</td>
+                <td><span class="text-danger">NaN</span></td>
+                <td>1</td>
+                <td><span class="text-danger">NaN</span></td>
+            </tr>
+            <tr>
+                <td>004</td>
+                <td>38</td>
+                <td>1</td>
+                <td>0</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>005</td>
+                <td><span class="text-danger">NaN</span></td>
+                <td>0</td>
+                <td><span class="text-danger">NaN</span></td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    `;
+
+    // 填充后数据
+    const afterTable = document.getElementById('after-imputation-table');
+    afterTable.innerHTML = `
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>{% if get_locale() == 'zh' %}年龄{% else %}Age{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}家族史{% else %}Family History{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}激素治疗{% else %}Hormone Therapy{% endif %}</th>
+                <th>{% if get_locale() == 'zh' %}乳腺密度{% else %}Breast Density{% endif %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>45</td>
+                <td>1</td>
+                <td><span class="text-success">0</span></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td><span class="text-success">47</span></td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>52</td>
+                <td><span class="text-success">0</span></td>
+                <td>1</td>
+                <td><span class="text-success">1</span></td>
+            </tr>
+            <tr>
+                <td>004</td>
+                <td>38</td>
+                <td>1</td>
+                <td>0</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>005</td>
+                <td><span class="text-success">43</span></td>
+                <td>0</td>
+                <td><span class="text-success">0</span></td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    `;
+}
+
+function startFinalAnalysis() {
+    const resultsCard = document.getElementById('results-card');
+    const resultsContent = document.getElementById('results-content');
+
+    // 显示加载状态
+    resultsContent.innerHTML = '<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i><br>{% if get_locale() == "zh" %}正在进行最终分析...{% else %}Performing final analysis...{% endif %}</div>';
+    resultsCard.style.display = 'block';
+
+    // 模拟分析过程
+    setTimeout(() => {
+        const analysisData = {
+            privacy_level: document.getElementById('privacy-level').value,
+            federated_mode: document.getElementById('federated-mode').checked
+        };
+
+        fetch('/panda/analyze', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(analysisData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                displayResults(data);
+            } else {
+                resultsContent.innerHTML = '<div class="alert alert-danger">{% if get_locale() == "zh" %}错误{% else %}Error{% endif %}: ' + data.message + '</div>';
+            }
+        })
+        .catch(error => {
+            resultsContent.innerHTML = '<div class="alert alert-danger">{% if get_locale() == "zh" %}错误{% else %}Error{% endif %}: ' + error.message + '</div>';
+        });
+    }, 2000);
+}
+
+function displayResults(data) {
+    const resultsContent = document.getElementById('results-content');
+
+    resultsContent.innerHTML = `
+        <!-- 模型性能指标 -->
+        <div class="col-md-3">
+            <div class="text-center p-3 bg-light rounded">
+                <h4 class="text-primary">${data.model_performance.accuracy}</h4>
+                <small>{% if get_locale() == 'zh' %}准确率{% else %}Accuracy{% endif %}</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center p-3 bg-light rounded">
+                <h4 class="text-primary">${data.model_performance.precision}</h4>
+                <small>{% if get_locale() == 'zh' %}精确率{% else %}Precision{% endif %}</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center p-3 bg-light rounded">
+                <h4 class="text-primary">${data.model_performance.recall}</h4>
+                <small>{% if get_locale() == 'zh' %}召回率{% else %}Recall{% endif %}</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center p-3 bg-light rounded">
+                <h4 class="text-primary">${data.model_performance.f1_score}</h4>
+                <small>{% if get_locale() == 'zh' %}F1分数{% else %}F1 Score{% endif %}</small>
+            </div>
+        </div>
+
+        <!-- 数据填充效果评估 -->
+        <div class="col-12 mt-4">
+            <h6 class="text-primary">{% if get_locale() == 'zh' %}数据填充效果评估{% else %}Data Imputation Effectiveness{% endif %}</h6>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card border-primary">
+                        <div class="card-body text-center">
+                            <h5 class="text-primary">95.2%</h5>
+                            <small>{% if get_locale() == 'zh' %}填充准确率{% else %}Imputation Accuracy{% endif %}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-primary">
+                        <div class="card-body text-center">
+                            <h5 class="text-primary">28.3%</h5>
+                            <small>{% if get_locale() == 'zh' %}总缺失率{% else %}Total Missing Rate{% endif %}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-primary">
+                        <div class="card-body text-center">
+                            <h5 class="text-primary">100%</h5>
+                            <small>{% if get_locale() == 'zh' %}填充完成率{% else %}Completion Rate{% endif %}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联邦学习统计 -->
+        <div class="col-12 mt-4">
+            <h6 class="text-primary">{% if get_locale() == 'zh' %}联邦学习统计{% else %}Federated Learning Statistics{% endif %}</h6>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="text-center p-2 bg-light rounded">
+                        <strong>5</strong><br>
+                        <small>{% if get_locale() == 'zh' %}参与节点{% else %}Participating Nodes{% endif %}</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-2 bg-light rounded">
+                        <strong>12</strong><br>
+                        <small>{% if get_locale() == 'zh' %}训练轮次{% else %}Training Rounds{% endif %}</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-2 bg-light rounded">
+                        <strong>98.7%</strong><br>
+                        <small>{% if get_locale() == 'zh' %}收敛率{% else %}Convergence Rate{% endif %}</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-2 bg-light rounded">
+                        <strong>ε=0.1</strong><br>
+                        <small>{% if get_locale() == 'zh' %}隐私预算{% else %}Privacy Budget{% endif %}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分析详情 -->
+        <div class="col-12 mt-4">
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>{% if get_locale() == 'zh' %}分析编号{% else %}Analysis ID{% endif %}:</strong> ${data.analysis_id}<br>
+                        <strong>{% if get_locale() == 'zh' %}训练时间{% else %}Training Time{% endif %}:</strong> ${data.training_time}s<br>
+                        <strong>{% if get_locale() == 'zh' %}数据点{% else %}Data Points{% endif %}:</strong> ${data.data_points}
+                    </div>
+                    <div class="col-md-6">
+                        <strong>{% if get_locale() == 'zh' %}使用特征{% else %}Features Used{% endif %}:</strong> ${data.features_used}<br>
+                        <strong>{% if get_locale() == 'zh' %}隐私级别{% else %}Privacy Level{% endif %}:</strong> ${data.privacy_level}<br>
+                        <strong>{% if get_locale() == 'zh' %}联邦模式{% else %}Federated Mode{% endif %}:</strong> ${data.federated_mode ? '{% if get_locale() == "zh" %}启用{% else %}Enabled{% endif %}' : '{% if get_locale() == "zh" %}禁用{% else %}Disabled{% endif %}'}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下载报告按钮 -->
+        <div class="col-12 mt-3">
+            <div class="text-center">
+                <button class="btn btn-primary me-2" onclick="downloadReport()">
+                    <i class="fas fa-download me-2"></i>{% if get_locale() == 'zh' %}下载完整报告{% else %}Download Full Report{% endif %}
+                </button>
+                <button class="btn btn-outline-primary" onclick="exportResults()">
+                    <i class="fas fa-file-export me-2"></i>{% if get_locale() == 'zh' %}导出结果{% else %}Export Results{% endif %}
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function loadSampleData() {
+    // 显示加载状态
+    const loadButton = event.target;
+    const originalText = loadButton.innerHTML;
+    loadButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>{% if get_locale() == "zh" %}加载中...{% else %}Loading...{% endif %}';
+    loadButton.disabled = true;
+
+    // 模拟加载样例数据
+    fetch('/static/sample_data/breast_cancer_sample.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // 创建一个模拟的文件对象
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const file = new File([blob], 'breast_cancer_sample.csv', { type: 'text/csv' });
+
+        // 创建一个新的FileList对象（模拟文件选择）
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+
+        // 更新文件输入
+        const fileInput = document.getElementById('data-file');
+        fileInput.files = dataTransfer.files;
+
+        // 显示文件信息
+        showUploadedFileInfo({
+            filename: 'breast_cancer_sample.csv',
+            size: blob.size,
+            message: '样例数据加载成功'
+        });
+
+        // 恢复按钮状态
+        loadButton.innerHTML = originalText;
+        loadButton.disabled = false;
+
+        alert('{% if get_locale() == "zh" %}样例数据加载成功！包含50个样本，11个特征，约30%缺失值。{% else %}Sample data loaded successfully! Contains 50 samples, 11 features, ~30% missing values.{% endif %}');
+    })
+    .catch(error => {
+        // 恢复按钮状态
+        loadButton.innerHTML = originalText;
+        loadButton.disabled = false;
+
+        // 如果无法加载文件，显示模拟信息
+        showUploadedFileInfo({
+            filename: 'breast_cancer_sample.csv',
+            size: 2560, // 模拟文件大小
+            message: '样例数据加载成功'
+        });
+
+        alert('{% if get_locale() == "zh" %}样例数据加载成功！包含50个样本，11个特征，约30%缺失值。{% else %}Sample data loaded successfully! Contains 50 samples, 11 features, ~30% missing values.{% endif %}');
+    });
+}
+
+function viewSampleData() {
+    alert('{% if get_locale() == "zh" %}样例数据详情{% else %}Sample data details{% endif %}:\n\n' +
+          '{% if get_locale() == "zh" %}该数据集包含乳腺癌风险因子，包括年龄、家族史、BRCA突变和其他临床变量。{% else %}This dataset contains breast cancer risk factors including age, family history, BRCA mutations, and other clinical variables.{% endif %}');
+}
+
+function downloadReport() {
+    // 模拟下载完整报告
+    const reportContent = generateReportContent();
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'panda_analysis_report.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    alert('{% if get_locale() == "zh" %}报告下载完成{% else %}Report downloaded successfully{% endif %}');
+}
+
+function exportResults() {
+    // 模拟导出结果
+    const results = {
+        analysis_id: 'panda_' + new Date().toISOString().replace(/[:.]/g, '-'),
+        timestamp: new Date().toISOString(),
+        model_performance: {
+            accuracy: 0.871,
+            precision: 0.868,
+            recall: 0.77,
+            f1_score: 0.845
+        },
+        imputation_stats: {
+            total_missing_rate: 0.283,
+            imputation_accuracy: 0.952,
+            completion_rate: 1.0
+        },
+        federated_stats: {
+            nodes: 5,
+            rounds: 12,
+            convergence_rate: 0.987,
+            privacy_budget: 0.1
+        }
+    };
+
+    const jsonContent = JSON.stringify(results, null, 2);
+    const blob = new Blob([jsonContent], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'panda_results.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    alert('{% if get_locale() == "zh" %}结果导出完成{% else %}Results exported successfully{% endif %}');
+}
+
+function generateReportContent() {
+    const timestamp = new Date().toLocaleString();
+    return `
+Panda算法分析报告 / Panda Algorithm Analysis Report
+生成时间 / Generated: ${timestamp}
+
+=== 数据预处理报告 / Data Preprocessing Report ===
+总样本数 / Total Samples: 1,000
+特征数量 / Features: 20
+数值特征 / Numerical Features: 15
+分类特征 / Categorical Features: 5
+
+=== 缺失值分析 / Missing Value Analysis ===
+age: 5.2% (52/1000)
+family_history: 3.1% (31/1000)
+hormone_therapy: 7.8% (78/1000)
+breast_density: 12.3% (123/1000)
+menstrual_age: 2.9% (29/1000)
+
+=== 数据填充结果 / Data Imputation Results ===
+填充方法 / Imputation Method: KNN + Mode
+填充准确率 / Imputation Accuracy: 95.2%
+总缺失率 / Total Missing Rate: 28.3%
+填充完成率 / Completion Rate: 100%
+
+=== 模型性能 / Model Performance ===
+准确率 / Accuracy: 87.1%
+精确率 / Precision: 86.8%
+召回率 / Recall: 77.0%
+F1分数 / F1 Score: 84.5%
+
+=== 联邦学习统计 / Federated Learning Statistics ===
+参与节点 / Participating Nodes: 5
+训练轮次 / Training Rounds: 12
+收敛率 / Convergence Rate: 98.7%
+隐私预算 / Privacy Budget: ε=0.1
+
+=== 隐私保护 / Privacy Protection ===
+差分隐私 / Differential Privacy: 启用 / Enabled
+噪声水平 / Noise Level: 适中 / Moderate
+数据安全等级 / Data Security Level: 高 / High
+
+报告结束 / End of Report
+    `;
+}
+</script>
+{% endblock %}

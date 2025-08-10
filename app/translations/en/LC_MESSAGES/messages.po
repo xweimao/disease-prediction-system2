@@ -1,0 +1,214 @@
+# English translations for Disease Prediction System.
+# Copyright (C) 2024 Sichuan Provincial Key Laboratory of Human Genetics
+# This file is distributed under the same license as the Disease Prediction System project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Disease Prediction System 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+msgid "Disease Prediction System"
+msgstr "Disease Prediction System"
+
+msgid "Sichuan Provincial Key Laboratory of Human Genetics"
+msgstr "Sichuan Provincial Key Laboratory of Human Genetics"
+
+msgid "Disease Risk Calculator"
+msgstr "Disease Risk Calculator"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "About"
+msgstr "About"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Data Life and Intelligent Health Center"
+msgstr "Data Life and Intelligent Health Center"
+
+msgid "Data Life and Intelligent Health Center (Mao Xiaowei)"
+msgstr "Data Life and Intelligent Health Center (Mao Xiaowei)"
+
+msgid "Maintain and Contact"
+msgstr "Maintain and Contact"
+
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+msgid "Southwest China Multi-Disease Risk Assessment"
+msgstr "Southwest China Multi-Disease Risk Assessment"
+
+msgid "Comprehensive disease risk prediction covering 8 categories and 11 types of diseases prevalent in Southwest China"
+msgstr "Comprehensive disease risk prediction covering 8 categories and 11 types of diseases prevalent in Southwest China"
+
+msgid "8 Disease Categories"
+msgstr "8 Disease Categories"
+
+msgid "11 Disease Types"
+msgstr "11 Disease Types"
+
+msgid "AI-Powered"
+msgstr "AI-Powered"
+
+msgid "Evidence-Based"
+msgstr "Evidence-Based"
+
+msgid "Disease Risk Assessment"
+msgstr "Disease Risk Assessment"
+
+msgid "Select a disease category to begin your risk assessment"
+msgstr "Select a disease category to begin your risk assessment"
+
+msgid "Cancer"
+msgstr "Cancer"
+
+msgid "Lung Cancer"
+msgstr "Lung Cancer"
+
+msgid "Esophageal Cancer"
+msgstr "Esophageal Cancer"
+
+msgid "Gastric Cancer"
+msgstr "Gastric Cancer"
+
+msgid "Colorectal Cancer"
+msgstr "Colorectal Cancer"
+
+msgid "Liver Cancer"
+msgstr "Liver Cancer"
+
+msgid "Cardiovascular Disease"
+msgstr "Cardiovascular Disease"
+
+msgid "Stroke"
+msgstr "Stroke"
+
+msgid "Hypertension"
+msgstr "Hypertension"
+
+msgid "Respiratory Disease"
+msgstr "Respiratory Disease"
+
+msgid "Chronic Obstructive Pulmonary Disease"
+msgstr "Chronic Obstructive Pulmonary Disease"
+
+msgid "Metabolic Disease"
+msgstr "Metabolic Disease"
+
+msgid "Diabetes"
+msgstr "Diabetes"
+
+msgid "Hyperlipidemia"
+msgstr "Hyperlipidemia"
+
+msgid "Hyperuricemia"
+msgstr "Hyperuricemia"
+
+msgid "Why Choose Our Platform"
+msgstr "Why Choose Our Platform"
+
+msgid "AI-Powered Analysis"
+msgstr "AI-Powered Analysis"
+
+msgid "Advanced machine learning algorithms for accurate risk assessment"
+msgstr "Advanced machine learning algorithms for accurate risk assessment"
+
+msgid "Privacy Protected"
+msgstr "Privacy Protected"
+
+msgid "Your health data is secure and never stored permanently"
+msgstr "Your health data is secure and never stored permanently"
+
+msgid "Based on extensive research and clinical data from Southwest China"
+msgstr "Based on extensive research and clinical data from Southwest China"
+
+msgid "Important Disclaimer"
+msgstr "Important Disclaimer"
+
+msgid "This tool is for educational and research purposes only. Results should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare providers for medical decisions."
+msgstr "This tool is for educational and research purposes only. Results should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare providers for medical decisions."
+
+msgid "Risk Assessment"
+msgstr "Risk Assessment"
+
+msgid "Please fill in the following information to assess your disease risk"
+msgstr "Please fill in the following information to assess your disease risk"
+
+msgid "Risk Factors Assessment"
+msgstr "Risk Factors Assessment"
+
+msgid "Please select"
+msgstr "Please select"
+
+msgid "Calculate Risk"
+msgstr "Calculate Risk"
+
+msgid "About This Assessment"
+msgstr "About This Assessment"
+
+msgid "This risk assessment tool uses advanced algorithms to evaluate your risk based on established medical research and population data from Southwest China."
+msgstr "This risk assessment tool uses advanced algorithms to evaluate your risk based on established medical research and population data from Southwest China."
+
+msgid "Evidence-based"
+msgstr "Evidence-based"
+
+msgid "Scientifically validated"
+msgstr "Scientifically validated"
+
+msgid "Privacy protected"
+msgstr "Privacy protected"
+
+msgid "Important Notice"
+msgstr "Important Notice"
+
+msgid "This assessment is for educational purposes only and should not replace professional medical advice. Please consult healthcare providers for medical decisions."
+msgstr "This assessment is for educational purposes only and should not replace professional medical advice. Please consult healthcare providers for medical decisions."
+
+msgid "Risk Assessment Result"
+msgstr "Risk Assessment Result"
+
+msgid "Recommendations"
+msgstr "Recommendations"
+
+msgid "Print Result"
+msgstr "Print Result"
+
+msgid "New Assessment"
+msgstr "New Assessment"
+
+msgid "Calculating..."
+msgstr "Calculating..."
+
+msgid "Prediction failed"
+msgstr "Prediction failed"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+msgid "Sorry, the page you are looking for does not exist or has been moved."
+msgstr "Sorry, the page you are looking for does not exist or has been moved."
+
+msgid "Back to Home"
+msgstr "Back to Home"
+
+msgid "Go Back"
+msgstr "Go Back"
+
+msgid "Service is running normally"
+msgstr "Service is running normally"
